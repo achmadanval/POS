@@ -13,15 +13,23 @@ class UserController extends Controller
             ->with('id',$id)
             ->with('name',$name);*/
 
-        $data = [
-            'level_id' => 2,
-            'username' => 'Manager-3',
-            'nama' => 'Manager 3',
+        /*$data = [
+            'level_id' => 1,
+            'username' => 'admin-2',
+            'nama' => 'Admin 2',
             'password' => Hash::make('12345'),
         ];
-        UserModel::create($data);
+        UserModel::create($data);*/
 
-        $user = UserModel::all();
+        $user = UserModel::findOr(5,['username', 'nama'], function(){
+            abort(404);
+        });
+
+        /* $user = UserModel::where('level_id', '>', 3) -> firstOr(function(){
+
+        }); */
+
+       // $user = UserModel::firstwhere('level_id',1);
         return view('user',['data'=> $user]);
     }
 }
