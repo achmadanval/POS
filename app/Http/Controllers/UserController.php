@@ -22,7 +22,20 @@ class UserController extends Controller
         UserModel::create($data);*/
         //$user =UserModel::findOrFail(1);
 
-        $user = UserModel::where('level_id', 2)->count();
+        //$user = UserModel::where('level_id', 2)->count();
+        $user =  UserModel::firstOrNew(  
+            [
+                'username' => 'manager33',
+                'nama' => 'Manager Tiga Tiga ',
+                'password' => hash::make('12345'),
+                'level_id' => 2
+            ]); 
+            $user->save();
+        /*$user =  UserModel::firstOrNew(  
+            [
+                'username' => 'manager',
+                'nama' => 'Manager ',
+            ]);*/ 
         //dd($user);
 
         /* $user = UserModel::where('level_id', '>', 3) -> firstOr(function(){
