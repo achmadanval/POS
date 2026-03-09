@@ -20,10 +20,9 @@ class UserController extends Controller
             'password' => Hash::make('12345'),
         ];
         UserModel::create($data);*/
+        $user =UserModel::findOrFail(1);
 
-        $user = UserModel::findOr(5,['username', 'nama'], function(){
-            abort(404);
-        });
+        //$user = UserModel::where('username', 'manager-9')->firstOrFail();
 
         /* $user = UserModel::where('level_id', '>', 3) -> firstOr(function(){
 
