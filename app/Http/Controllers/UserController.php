@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Testing\Fluent\Concerns\Has;
 
+
 class UserController extends Controller
 {
     public function index(){
@@ -63,8 +64,12 @@ class UserController extends Controller
            //return view('user',['data'=> $user]);
         } */
 
-        $user = UserModel :: all();
-        return view('user', ['data' => $user]);
+        //$user = UserModel :: all();
+        //return view('user', ['data' => $user]);
+
+        $user = UserModel::with('level')->get();
+        //dd($user);
+        return view('user',['data' => $user]);
     }
     public function tambah(){
         return view('user_tambah');
